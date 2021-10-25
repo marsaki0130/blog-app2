@@ -3,10 +3,15 @@
 # Table name: articles
 #
 #  id         :bigint           not null, primary key
-#  content    :text
-#  title      :string
+#  content    :text             not null
+#  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint           not null
+#
+# Indexes
+#
+#  index_articles_on_user_id  (user_id)
 #
 class Article < ApplicationRecord
     validates :title, presence: true
@@ -15,6 +20,12 @@ class Article < ApplicationRecord
     validates :content, presence: true
     validates :content, length: {minimum: 10 }
     validates :content, uniqueness: true
+
+    belongs_to :user
+
+    def author_name
+        user.display_name
+    end
 
 
     def display_created_at
