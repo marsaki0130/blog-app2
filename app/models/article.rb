@@ -22,6 +22,7 @@ class Article < ApplicationRecord
     validates :content, uniqueness: true
 
     belongs_to :user
+    has_many :comments, dependent: :destroy
 
     def author_name
         user.display_name
