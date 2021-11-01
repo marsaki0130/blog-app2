@@ -41,15 +41,9 @@ class User < ApplicationRecord
   def has_written?(article)
     articles.exists?(id: article.id)
   end
-
+  
   def has_liked?(article)
     likes.exists?(article_id: article.id)
-  end
-
-  #user名を定義
-
-  def display_name
-    profile&.nickname || self.email.split('@').first #ぼっち演算子
   end
 
   def follow!(user)
@@ -70,14 +64,6 @@ class User < ApplicationRecord
 
   def prepare_profile
     profile || build_profile
-  end
-
-  def avatar_image
-    if profile&.avatar&.attached?
-      profile.avatar
-    else
-      'default-avatar.png'
-    end
   end
 
   private
