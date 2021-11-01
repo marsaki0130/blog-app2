@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'faker'
 gem 'hamlit'
 gem 'annotate'
+gem 'active_decorator'
 gem 'devise'
 gem 'aws-sdk-s3', require: false
 
